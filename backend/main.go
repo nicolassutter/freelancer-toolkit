@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/controller"
+	"backend/models"
 
 	_ "backend/docs"
 
@@ -17,6 +18,8 @@ func main() {
 
 	db, err := gorm.Open(sqlite.Open("main.sqlite"), &gorm.Config{})
 
+	models.MigrateModels(db)
+
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -25,6 +28,6 @@ func main() {
 
 	// Migrate the schema
 
-	e.GET("/", c.Hello)
+	e.POST("/users", c.CreateUser)
 	e.Logger.Fatal(e.Start(":1323"))
 }

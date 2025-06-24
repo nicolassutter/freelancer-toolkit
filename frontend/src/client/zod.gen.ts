@@ -2,14 +2,33 @@
 
 import { z } from 'zod';
 
-export const zGetHelloWorldData = z.object({
-    body: z.never().optional(),
+export const zControllerCreateUserBody = z.object({
+    email: z.string().email(),
+    name: z.string()
+});
+
+export const zGormDeletedAt = z.object({
+    time: z.string().optional(),
+    valid: z.boolean().optional()
+});
+
+export const zModelsUser = z.object({
+    createdAt: z.string().optional(),
+    deletedAt: zGormDeletedAt.optional(),
+    email: z.string().optional(),
+    id: z.number().int().optional(),
+    name: z.string().optional(),
+    updatedAt: z.string().optional()
+});
+
+export const zCreateUserData = z.object({
+    body: zControllerCreateUserBody,
     headers: z.never().optional(),
     path: z.never().optional(),
     query: z.never().optional()
 });
 
 /**
- * Hello, World!
+ * User created successfully
  */
-export const zGetHelloWorldResponse = z.string();
+export const zCreateUserResponse = zModelsUser;

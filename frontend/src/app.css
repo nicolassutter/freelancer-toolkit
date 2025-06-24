@@ -1,0 +1,3 @@
+/* for panda css & park ui */
+@layer panda_base, panda_tokens, panda_recipes, panda_utilities;
+@import "tailwindcss";

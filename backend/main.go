@@ -13,13 +13,13 @@ import (
 func main() {
 	e := echo.New()
 
-	c := controller.NewController()
-
 	db, err := gorm.Open(sqlite.Open("main.sqlite"), &gorm.Config{})
 
 	if err != nil {
 		panic("failed to connect database")
 	}
+
+	c := controller.NewController(db)
 
 	// Migrate the schema
 

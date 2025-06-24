@@ -4,20 +4,24 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"gorm.io/gorm"
 )
 
 // Controller example
 type Controller struct {
+	db *gorm.DB
 }
 
 // NewController example
-func NewController() *Controller {
-	return &Controller{}
+func NewController(db *gorm.DB) *Controller {
+	return &Controller{
+		db,
+	}
 }
 
 // @Produce json
 // @Success 200 {string} string "Hello, World!"
 // @Router / [get]
-func (controller *Controller) Hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+func (c *Controller) Hello(r echo.Context) error {
+	return r.String(http.StatusOK, "Hello, World!")
 }

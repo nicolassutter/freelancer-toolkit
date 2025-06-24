@@ -20,6 +20,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
+                "operationId": "getHelloWorld",
                 "responses": {
                     "200": {
                         "description": "Hello, World!",

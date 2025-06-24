@@ -19,6 +19,7 @@ func NewController(db *gorm.DB) *Controller {
 	}
 }
 
+// @id getHelloWorld
 // @Produce json
 // @Success 200 {string} string "Hello, World!"
 // @Router / [get]

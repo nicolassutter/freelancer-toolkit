@@ -3,6 +3,8 @@ package main
 import (
 	"backend/controller"
 
+	_ "backend/docs"
+
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

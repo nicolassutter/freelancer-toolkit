@@ -2,8 +2,7 @@
 
 ## Backend
 
-- Golang REST API with the echo package https://echo.labstack.com/
-- openapi spec generated from comments with [swaggo](https://github.com/swaggo/swag?tab=readme-ov-file#getting-started)
+- Golang API with the echo package https://echo.labstack.com/ and https://connectrpc.com/docs/go/getting-started for RPC client & server.
 - SQL ORM : https://gorm.io/
 
 ## Frontend

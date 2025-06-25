@@ -1,0 +1,11 @@
+version: v2
+
+plugins:
+  # TypeScript for frontend
+  - local: protoc-gen-es
+    out: ../frontend/src/gen
+    # Also generate any imported dependencies
+    include_imports: true
+    # Add more plugin options here
+    opt: target=ts 
+

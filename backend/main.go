@@ -2,32 +2,26 @@ package main
 
 import (
 	"backend/controller"
-	"backend/models"
-
-	_ "backend/docs"
+	"backend/db"
+	"log"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
 
-// @title Freelancer Toolkit API
-// @version 0.0.1
 func main() {
 	e := echo.New()
 
-	db, err := gorm.Open(sqlite.Open("main.sqlite"), &gorm.Config{})
+	db.InitDB()
 
-	models.MigrateModels(db)
+	controller.RegisterUsersService(e)
 
-	if err != nil {
-		panic("failed to connect database")
+	server := &http.Server{
+		Addr:    ":1323",
+		Handler: e,
 	}
 
-	c := controller.NewController(db)
-
-	// Migrate the schema
-
-	e.POST("/users", c.CreateUser)
-	e.Logger.Fatal(e.Start(":1323"))
+	if err := server.ListenAndServe(); err != http.ErrServerClosed {
+		log.Fatal(err)
+	}
 }

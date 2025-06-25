@@ -1,51 +1,53 @@
 package controller
 
 import (
-	"backend/models"
-	"net/http"
+	usersv1 "backend/gen/proto/users/v1"
+	"backend/gen/proto/users/v1/usersv1connect"
+	"backend/utils"
+	"errors"
 
+	"backend/db"
+	"backend/models"
+	"context"
+	"fmt"
+
+	"connectrpc.com/connect"
 	"github.com/labstack/echo/v4"
-	"gorm.io/gorm"
 )
 
-// Controller example
-type Controller struct {
-	db *gorm.DB
-}
+type UsersServer struct{}
 
-// NewController example
-func NewController(db *gorm.DB) *Controller {
-	return &Controller{
-		db,
-	}
-}
-
-type createUserBody struct {
-	Name  string `json:"name" validate:"required"`
-	Email string `json:"email" validate:"required" format:"email"`
-}
-
-// @id createUser
-// @Success 200 {object} models.User "User created successfully"
-// @Failure 500 {string} string "Error creating user"
-// @Param createUserBody body createUserBody true "User data"
-// @Router /users [post]
-// @Summary Create a new user
-// @Accept  json
-// @Produce json
-func (c *Controller) CreateUser(r echo.Context) error {
-	// Implementation for creating a user
-	newUser := models.User{
-		Name:  r.FormValue("name"),
-		Email: r.FormValue("email"),
+func (s *UsersServer) CreateUser(
+	ctx context.Context,
+	req *connect.Request[usersv1.CreateUserRequest],
+) (*connect.Response[usersv1.CreateUserResponse], error) {
+	newUser := &models.User{
+		Email: req.Msg.Email,
+		Name:  req.Msg.Name,
 	}
 
-	result := c.db.Create(&newUser)
+	result := db.DB.Create(newUser)
 
 	if result.Error != nil {
-		// If there is an error, return a 500 Internal Server Error status code.
-		return r.String(http.StatusInternalServerError, "Error creating user")
+		err := errors.New("Unable to create user")
+		return nil, connect.NewError(connect.CodeUnknown, err)
 	}
 
-	return r.JSON(http.StatusOK, &newUser)
+	response := connect.NewResponse(&usersv1.CreateUserResponse{
+		Email: fmt.Sprintf("Hello, %s!", req.Msg.Email),
+	})
+
+	return response, nil
+}
+
+/*
+	curl \
+		 --header "Content-Type: application/json" \
+		 --data '{"email": "test@email.com"}' \
+		 http://localhost:1323/proto.users.v1.UserService/CreateUser
+*/
+func RegisterUsersService(e *echo.Echo) {
+	usersService := &UsersServer{}
+	path, handler := usersv1connect.NewUserServiceHandler(usersService)
+	utils.RegisterHanderOnPath(e, path, handler)
 }

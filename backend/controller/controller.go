@@ -3,7 +3,6 @@ package controller
 import (
 	usersv1 "backend/gen/proto/users/v1"
 	"backend/gen/proto/users/v1/usersv1connect"
-	"backend/utils"
 	"errors"
 
 	"backend/db"
@@ -12,7 +11,8 @@ import (
 	"fmt"
 
 	"connectrpc.com/connect"
-	"github.com/labstack/echo/v4"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/adaptor"
 )
 
 type UsersServer struct{}
@@ -46,8 +46,8 @@ func (s *UsersServer) CreateUser(
 		 --data '{"email": "test@email.com"}' \
 		 http://localhost:1323/proto.users.v1.UserService/CreateUser
 */
-func RegisterUsersService(e *echo.Echo) {
+func RegisterUsersService(app *fiber.App) {
 	usersService := &UsersServer{}
 	path, handler := usersv1connect.NewUserServiceHandler(usersService)
-	utils.RegisterHanderOnPath(e, path, handler)
+	app.Use(path, adaptor.HTTPHandler(handler))
 }

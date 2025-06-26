@@ -3,25 +3,15 @@ package main
 import (
 	"backend/controller"
 	"backend/db"
-	"log"
-	"net/http"
-
-	"github.com/labstack/echo/v4"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	e := echo.New()
+	app := fiber.New()
 
 	db.InitDB()
 
-	controller.RegisterUsersService(e)
+	controller.RegisterUsersService(app)
 
-	server := &http.Server{
-		Addr:    ":1323",
-		Handler: e,
-	}
-
-	if err := server.ListenAndServe(); err != http.ErrServerClosed {
-		log.Fatal(err)
-	}
+	app.Listen(":1323")
 }

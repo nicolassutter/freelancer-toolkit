@@ -1,8 +1,6 @@
 package db
 
 import (
-	"backend/models"
-
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -10,16 +8,16 @@ import (
 var DB *gorm.DB
 
 func InitDB() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("main.sqlite"), &gorm.Config{})
+	database, err := gorm.Open(sqlite.Open("main.sqlite"), &gorm.Config{})
 
 	// migrate every db model
-	models.MigrateModels(db)
+	MigrateModels(database)
 
 	if err != nil {
 		panic("failed to connect database")
 	}
 
-	DB = db
+	DB = database
 
-	return db
+	return database
 }

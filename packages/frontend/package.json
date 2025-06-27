@@ -1,5 +1,5 @@
 {
-  "name": "with-tanstack-router",
+  "name": "@freelancer-toolkit/frontend",
   "type": "module",
   "scripts": {
     "prepare": "panda codegen",
@@ -16,7 +16,8 @@
     "@tanstack/solid-router-devtools": "^1.114.1",
     "solid-js": "^1.9.5",
     "vinxi": "^0.5.7",
-    "zod": "^3.25.67"
+    "zod": "^3.25.67",
+    "@freelancer-toolkit/backend": "workspace:*"
   },
   "engines": {
     "node": ">=22"

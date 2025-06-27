@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@freelancer-toolkit/backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,6 +8,11 @@
   },
   "keywords": [],
   "author": "",
+  "exports": {
+    "./sdk/*": {
+      "import": "./gen/typescript/proto/*.ts"
+    }
+  },
   "license": "ISC",
   "packageManager": "pnpm@10.5.2",
   "devDependencies": {

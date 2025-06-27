@@ -1,8 +1,9 @@
 package main
 
 import (
-	"backend/controller"
 	"backend/db"
+	usersv1Service "backend/services/users/v1"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -11,7 +12,7 @@ func main() {
 
 	db.InitDB()
 
-	controller.RegisterUsersService(app)
+	usersv1Service.RegisterUsersService(app)
 
 	app.Listen(":1323")
 }

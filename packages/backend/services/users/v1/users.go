@@ -1,4 +1,4 @@
-package controller
+package usersv1Service
 
 import (
 	usersv1 "backend/gen/proto/users/v1"
@@ -6,7 +6,6 @@ import (
 	"errors"
 
 	"backend/db"
-	"backend/models"
 	"context"
 	"fmt"
 
@@ -21,7 +20,7 @@ func (s *UsersServer) CreateUser(
 	ctx context.Context,
 	req *connect.Request[usersv1.CreateUserRequest],
 ) (*connect.Response[usersv1.CreateUserResponse], error) {
-	newUser := &models.User{
+	newUser := &db.User{
 		Email: req.Msg.Email,
 		Name:  req.Msg.Name,
 	}

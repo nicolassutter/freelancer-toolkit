@@ -2,12 +2,10 @@
   "name": "@freelancer-toolkit/frontend",
   "type": "module",
   "scripts": {
-    "prepare": "panda codegen",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "version": "vinxi version",
-    "openapi-ts": "openapi-ts"
+    "version": "vinxi version"
   },
   "dependencies": {
     "@solidjs/start": "^1.1.2",

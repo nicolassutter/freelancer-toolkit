@@ -1,15 +1,13 @@
 import { createFileRoute } from "@tanstack/solid-router";
-import Counter from "~/components/Counter";
 
 export const Route = createFileRoute("/")({
-  component: RouteComponent
+  component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <main>
       <h1>Hello world!</h1>
-      <Counter />
       <p>
         Visit{" "}
         <a href="https://start.solidjs.com" target="_blank">

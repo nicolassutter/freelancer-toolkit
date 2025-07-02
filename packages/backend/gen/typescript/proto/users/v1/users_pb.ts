@@ -10,34 +10,34 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/users/v1/users.proto.
  */
 export const file_proto_users_v1_users: GenFile = /*@__PURE__*/
-  fileDesc("Chpwcm90by91c2Vycy92MS91c2Vycy5wcm90bxIOcHJvdG8udXNlcnMudjEiMAoRQ3JlYXRlVXNlclJlcXVlc3QSDQoFZW1haWwYASABKAkSDAoEbmFtZRgCIAEoCSIxChJDcmVhdGVVc2VyUmVzcG9uc2USDQoFZW1haWwYASABKAkSDAoEbmFtZRgCIAEoCTJkCgtVc2VyU2VydmljZRJVCgpDcmVhdGVVc2VyEiEucHJvdG8udXNlcnMudjEuQ3JlYXRlVXNlclJlcXVlc3QaIi5wcm90by51c2Vycy52MS5DcmVhdGVVc2VyUmVzcG9uc2UiAEIkWiJiYWNrZW5kL2dlbi9wcm90by91c2Vycy92MTt1c2Vyc3YxYgZwcm90bzM");
+  fileDesc("Chpwcm90by91c2Vycy92MS91c2Vycy5wcm90bxIOcHJvdG8udXNlcnMudjEiLwoMTG9naW5SZXF1ZXN0Eg0KBWVtYWlsGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiwKDUxvZ2luUmVzcG9uc2USDQoFZW1haWwYASABKAkSDAoEbmFtZRgCIAEoCTJVCgtVc2VyU2VydmljZRJGCgVMb2dpbhIcLnByb3RvLnVzZXJzLnYxLkxvZ2luUmVxdWVzdBodLnByb3RvLnVzZXJzLnYxLkxvZ2luUmVzcG9uc2UiAEIkWiJiYWNrZW5kL2dlbi9wcm90by91c2Vycy92MTt1c2Vyc3YxYgZwcm90bzM");
 
 /**
- * @generated from message proto.users.v1.CreateUserRequest
+ * @generated from message proto.users.v1.LoginRequest
  */
-export type CreateUserRequest = Message<"proto.users.v1.CreateUserRequest"> & {
+export type LoginRequest = Message<"proto.users.v1.LoginRequest"> & {
   /**
    * @generated from field: string email = 1;
    */
   email: string;
 
   /**
-   * @generated from field: string name = 2;
+   * @generated from field: string password = 2;
    */
-  name: string;
+  password: string;
 };
 
 /**
- * Describes the message proto.users.v1.CreateUserRequest.
- * Use `create(CreateUserRequestSchema)` to create a new message.
+ * Describes the message proto.users.v1.LoginRequest.
+ * Use `create(LoginRequestSchema)` to create a new message.
  */
-export const CreateUserRequestSchema: GenMessage<CreateUserRequest> = /*@__PURE__*/
+export const LoginRequestSchema: GenMessage<LoginRequest> = /*@__PURE__*/
   messageDesc(file_proto_users_v1_users, 0);
 
 /**
- * @generated from message proto.users.v1.CreateUserResponse
+ * @generated from message proto.users.v1.LoginResponse
  */
-export type CreateUserResponse = Message<"proto.users.v1.CreateUserResponse"> & {
+export type LoginResponse = Message<"proto.users.v1.LoginResponse"> & {
   /**
    * @generated from field: string email = 1;
    */
@@ -50,10 +50,10 @@ export type CreateUserResponse = Message<"proto.users.v1.CreateUserResponse"> & 
 };
 
 /**
- * Describes the message proto.users.v1.CreateUserResponse.
- * Use `create(CreateUserResponseSchema)` to create a new message.
+ * Describes the message proto.users.v1.LoginResponse.
+ * Use `create(LoginResponseSchema)` to create a new message.
  */
-export const CreateUserResponseSchema: GenMessage<CreateUserResponse> = /*@__PURE__*/
+export const LoginResponseSchema: GenMessage<LoginResponse> = /*@__PURE__*/
   messageDesc(file_proto_users_v1_users, 1);
 
 /**
@@ -61,12 +61,14 @@ export const CreateUserResponseSchema: GenMessage<CreateUserResponse> = /*@__PUR
  */
 export const UserService: GenService<{
   /**
-   * @generated from rpc proto.users.v1.UserService.CreateUser
+   * rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+   *
+   * @generated from rpc proto.users.v1.UserService.Login
    */
-  createUser: {
+  login: {
     methodKind: "unary";
-    input: typeof CreateUserRequestSchema;
-    output: typeof CreateUserResponseSchema;
+    input: typeof LoginRequestSchema;
+    output: typeof LoginResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_users_v1_users, 0);

@@ -1,4 +1,11 @@
 import { createFileRoute } from "@tanstack/solid-router";
+import { For } from "solid-js";
+import {
+  DataTable,
+  DataTableCell,
+  DataTableHeader,
+  DataTableRow,
+} from "~/components/dataTable";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -7,14 +14,27 @@ export const Route = createFileRoute("/")({
 function RouteComponent() {
   return (
     <main>
-      <h1>Hello world!</h1>
-      <p>
-        Visit{" "}
-        <a href="https://start.solidjs.com" target="_blank">
-          start.solidjs.com
-        </a>{" "}
-        to learn how to build SolidStart apps.
-      </p>
+      <DataTable
+        head={[
+          <DataTableRow>
+            <For
+              each={[
+                "TJM",
+                `Cotisations Urssaf (${24.6}%)`,
+                `Impots (${2.2} %)`,
+                `Statut`, // 'travaille', 'conge', 'ferie'
+              ]}
+            >
+              {(column) => <DataTableHeader>{column}</DataTableHeader>}
+            </For>
+          </DataTableRow>,
+        ]}
+        body={Array.from({ length: 10 }, (_, i) => (
+          <DataTableRow>
+            <DataTableCell>{`Row ${i + 1}`}</DataTableCell>
+          </DataTableRow>
+        ))}
+      ></DataTable>
     </main>
   );
 }

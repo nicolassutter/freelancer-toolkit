@@ -8,14 +8,16 @@
     "version": "vinxi version"
   },
   "dependencies": {
+    "@freelancer-toolkit/backend": "workspace:*",
     "@solidjs/start": "^1.1.2",
     "@tanstack/router-plugin": "^1.112.0",
+    "@tanstack/solid-form": "^1.12.4",
+    "@tanstack/solid-query": "^5.81.5",
     "@tanstack/solid-router": "^1.114.1",
     "@tanstack/solid-router-devtools": "^1.114.1",
     "solid-js": "^1.9.5",
     "vinxi": "^0.5.7",
-    "zod": "^3.25.67",
-    "@freelancer-toolkit/backend": "workspace:*"
+    "zod": "^3.25.67"
   },
   "engines": {
     "node": ">=22"
@@ -24,6 +26,7 @@
     "@hey-api/openapi-ts": "^0.76.0",
     "@pandacss/dev": "^0.54.0",
     "@tailwindcss/vite": "^4.1.10",
+    "daisyui": "latest",
     "tailwindcss": "^4.1.10"
   }
 }

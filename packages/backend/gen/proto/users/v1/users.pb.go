@@ -21,28 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateUserRequest struct {
+type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserRequest) Reset() {
-	*x = CreateUserRequest{}
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
 	mi := &file_proto_users_v1_users_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserRequest) String() string {
+func (x *LoginRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserRequest) ProtoMessage() {}
+func (*LoginRequest) ProtoMessage() {}
 
-func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_users_v1_users_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,26 +54,26 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
 	return file_proto_users_v1_users_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateUserRequest) GetEmail() string {
+func (x *LoginRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *CreateUserRequest) GetName() string {
+func (x *LoginRequest) GetPassword() string {
 	if x != nil {
-		return x.Name
+		return x.Password
 	}
 	return ""
 }
 
-type CreateUserResponse struct {
+type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -81,20 +81,20 @@ type CreateUserResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
 	mi := &file_proto_users_v1_users_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserResponse) String() string {
+func (x *LoginResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserResponse) ProtoMessage() {}
+func (*LoginResponse) ProtoMessage() {}
 
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_users_v1_users_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -106,19 +106,19 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
 	return file_proto_users_v1_users_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserResponse) GetEmail() string {
+func (x *LoginResponse) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *CreateUserResponse) GetName() string {
+func (x *LoginResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
@@ -129,16 +129,15 @@ var File_proto_users_v1_users_proto protoreflect.FileDescriptor
 
 const file_proto_users_v1_users_proto_rawDesc = "" +
 	"\n" +
-	"\x1aproto/users/v1/users.proto\x12\x0eproto.users.v1\"=\n" +
-	"\x11CreateUserRequest\x12\x14\n" +
+	"\x1aproto/users/v1/users.proto\x12\x0eproto.users.v1\"@\n" +
+	"\fLoginRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"9\n" +
+	"\rLoginResponse\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\">\n" +
-	"\x12CreateUserResponse\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2d\n" +
-	"\vUserService\x12U\n" +
-	"\n" +
-	"CreateUser\x12!.proto.users.v1.CreateUserRequest\x1a\".proto.users.v1.CreateUserResponse\"\x00B$Z\"backend/gen/proto/users/v1;usersv1b\x06proto3"
+	"\x04name\x18\x02 \x01(\tR\x04name2U\n" +
+	"\vUserService\x12F\n" +
+	"\x05Login\x12\x1c.proto.users.v1.LoginRequest\x1a\x1d.proto.users.v1.LoginResponse\"\x00B$Z\"backend/gen/proto/users/v1;usersv1b\x06proto3"
 
 var (
 	file_proto_users_v1_users_proto_rawDescOnce sync.Once
@@ -154,12 +153,12 @@ func file_proto_users_v1_users_proto_rawDescGZIP() []byte {
 
 var file_proto_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_proto_users_v1_users_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),  // 0: proto.users.v1.CreateUserRequest
-	(*CreateUserResponse)(nil), // 1: proto.users.v1.CreateUserResponse
+	(*LoginRequest)(nil),  // 0: proto.users.v1.LoginRequest
+	(*LoginResponse)(nil), // 1: proto.users.v1.LoginResponse
 }
 var file_proto_users_v1_users_proto_depIdxs = []int32{
-	0, // 0: proto.users.v1.UserService.CreateUser:input_type -> proto.users.v1.CreateUserRequest
-	1, // 1: proto.users.v1.UserService.CreateUser:output_type -> proto.users.v1.CreateUserResponse
+	0, // 0: proto.users.v1.UserService.Login:input_type -> proto.users.v1.LoginRequest
+	1, // 1: proto.users.v1.UserService.Login:output_type -> proto.users.v1.LoginResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -12,7 +12,7 @@ func main() {
 
 	db.InitDB()
 
-	usersv1Service.RegisterUsersService(app)
+	usersv1Service.RegisterToFiber(app)
 
 	app.Listen(":1323")
 }

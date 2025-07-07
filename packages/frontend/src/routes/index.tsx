@@ -1,11 +1,5 @@
 import { createFileRoute } from "@tanstack/solid-router";
-import { For } from "solid-js";
-import {
-  DataTable,
-  DataTableCell,
-  DataTableHeader,
-  DataTableRow,
-} from "~/components/dataTable";
+import { DailyRevenueTable } from "~/components/patterns/tables";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -13,28 +7,31 @@ export const Route = createFileRoute("/")({
 
 function RouteComponent() {
   return (
-    <main>
-      <DataTable
-        head={[
-          <DataTableRow>
-            <For
-              each={[
-                "TJM",
-                `Cotisations Urssaf (${24.6}%)`,
-                `Impots (${2.2} %)`,
-                `Statut`, // 'travaille', 'conge', 'ferie'
-              ]}
-            >
-              {(column) => <DataTableHeader>{column}</DataTableHeader>}
-            </For>
-          </DataTableRow>,
+    <main class="p-4">
+      <DailyRevenueTable
+        dailyRevenue={415}
+        currency="€"
+        dataset={[
+          { status: 'full_day', date: new Date() },
+          { status: 'half_day', date: new Date() },
+          { status: 'conge', date: new Date() },
+          { status: 'ferie', date: new Date() },
         ]}
-        body={Array.from({ length: 10 }, (_, i) => (
-          <DataTableRow>
-            <DataTableCell>{`Row ${i + 1}`}</DataTableCell>
-          </DataTableRow>
-        ))}
-      ></DataTable>
+        taxes={[
+          {
+            name: 'Urssaf',
+            amount: 24.6,
+          },
+          {
+            name: 'Impots',
+            amount: 2.2,
+          },
+          {
+            name: 'Cotisations professionnelles',
+            amount: 0.2,
+          }
+        ]}
+      />
     </main>
   );
 }

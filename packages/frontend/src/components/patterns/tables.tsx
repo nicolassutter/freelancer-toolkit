@@ -3,20 +3,20 @@ import { DataTable, DataTableCell, DataTableHeader, DataTableRow } from "../data
 import {z} from 'zod'
 
 const StatusSchema = z.enum(["full_day", "conge", "ferie", "half_day"]);
+export const DailyRevenueTableSchema = z.object({
+    dailyRevenue: z.number(),
+    currency: z.string(),
+    taxes: z.array(z.object({
+        name: z.string(),
+        amount: z.number().min(0).max(100) // In percentage
+    })),
+    dataset: z.array(z.object({
+        status: StatusSchema,
+        date: z.instanceof(Date)
+    }))
+});
 
-export const DailyRevenueTable: Component<{
-    dailyRevenue: number,
-    currency: string,
-    taxes: {
-        name: string,
-        /** In percentage */
-        amount: number
-    }[]
-    dataset: {
-        status: z.infer<typeof StatusSchema>;
-        date: Date
-    }[]
-}> = (props) => {
+export const DailyRevenueTable: Component<z.infer<typeof DailyRevenueTableSchema>> = (props) => {
     const totalRatePercentage = props.taxes.reduce((acc, tax) => acc + tax.amount, 0);
     const totalRate = totalRatePercentage / 100;
 

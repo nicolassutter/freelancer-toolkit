@@ -10,7 +10,29 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file proto/users/v1/users.proto.
  */
 export const file_proto_users_v1_users: GenFile = /*@__PURE__*/
-  fileDesc("Chpwcm90by91c2Vycy92MS91c2Vycy5wcm90bxIOcHJvdG8udXNlcnMudjEiLwoMTG9naW5SZXF1ZXN0Eg0KBWVtYWlsGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIiwKDUxvZ2luUmVzcG9uc2USDQoFZW1haWwYASABKAkSDAoEbmFtZRgCIAEoCTJVCgtVc2VyU2VydmljZRJGCgVMb2dpbhIcLnByb3RvLnVzZXJzLnYxLkxvZ2luUmVxdWVzdBodLnByb3RvLnVzZXJzLnYxLkxvZ2luUmVzcG9uc2UiAEIkWiJiYWNrZW5kL2dlbi9wcm90by91c2Vycy92MTt1c2Vyc3YxYgZwcm90bzM");
+  fileDesc("Chpwcm90by91c2Vycy92MS91c2Vycy5wcm90bxIOcHJvdG8udXNlcnMudjEiIwoEVXNlchINCgVlbWFpbBgBIAEoCRIMCgRuYW1lGAIgASgJIi8KDExvZ2luUmVxdWVzdBINCgVlbWFpbBgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSIPCg1Mb2dpblJlc3BvbnNlIhAKDkdldFVzZXJSZXF1ZXN0IjUKD0dldFVzZXJSZXNwb25zZRIiCgR1c2VyGAEgASgLMhQucHJvdG8udXNlcnMudjEuVXNlcjKjAQoLVXNlclNlcnZpY2USRgoFTG9naW4SHC5wcm90by51c2Vycy52MS5Mb2dpblJlcXVlc3QaHS5wcm90by51c2Vycy52MS5Mb2dpblJlc3BvbnNlIgASTAoHR2V0VXNlchIeLnByb3RvLnVzZXJzLnYxLkdldFVzZXJSZXF1ZXN0Gh8ucHJvdG8udXNlcnMudjEuR2V0VXNlclJlc3BvbnNlIgBCJFoiYmFja2VuZC9nZW4vcHJvdG8vdXNlcnMvdjE7dXNlcnN2MWIGcHJvdG8z");
+
+/**
+ * @generated from message proto.users.v1.User
+ */
+export type User = Message<"proto.users.v1.User"> & {
+  /**
+   * @generated from field: string email = 1;
+   */
+  email: string;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message proto.users.v1.User.
+ * Use `create(UserSchema)` to create a new message.
+ */
+export const UserSchema: GenMessage<User> = /*@__PURE__*/
+  messageDesc(file_proto_users_v1_users, 0);
 
 /**
  * @generated from message proto.users.v1.LoginRequest
@@ -32,21 +54,12 @@ export type LoginRequest = Message<"proto.users.v1.LoginRequest"> & {
  * Use `create(LoginRequestSchema)` to create a new message.
  */
 export const LoginRequestSchema: GenMessage<LoginRequest> = /*@__PURE__*/
-  messageDesc(file_proto_users_v1_users, 0);
+  messageDesc(file_proto_users_v1_users, 1);
 
 /**
  * @generated from message proto.users.v1.LoginResponse
  */
 export type LoginResponse = Message<"proto.users.v1.LoginResponse"> & {
-  /**
-   * @generated from field: string email = 1;
-   */
-  email: string;
-
-  /**
-   * @generated from field: string name = 2;
-   */
-  name: string;
 };
 
 /**
@@ -54,7 +67,37 @@ export type LoginResponse = Message<"proto.users.v1.LoginResponse"> & {
  * Use `create(LoginResponseSchema)` to create a new message.
  */
 export const LoginResponseSchema: GenMessage<LoginResponse> = /*@__PURE__*/
-  messageDesc(file_proto_users_v1_users, 1);
+  messageDesc(file_proto_users_v1_users, 2);
+
+/**
+ * @generated from message proto.users.v1.GetUserRequest
+ */
+export type GetUserRequest = Message<"proto.users.v1.GetUserRequest"> & {
+};
+
+/**
+ * Describes the message proto.users.v1.GetUserRequest.
+ * Use `create(GetUserRequestSchema)` to create a new message.
+ */
+export const GetUserRequestSchema: GenMessage<GetUserRequest> = /*@__PURE__*/
+  messageDesc(file_proto_users_v1_users, 3);
+
+/**
+ * @generated from message proto.users.v1.GetUserResponse
+ */
+export type GetUserResponse = Message<"proto.users.v1.GetUserResponse"> & {
+  /**
+   * @generated from field: proto.users.v1.User user = 1;
+   */
+  user?: User;
+};
+
+/**
+ * Describes the message proto.users.v1.GetUserResponse.
+ * Use `create(GetUserResponseSchema)` to create a new message.
+ */
+export const GetUserResponseSchema: GenMessage<GetUserResponse> = /*@__PURE__*/
+  messageDesc(file_proto_users_v1_users, 4);
 
 /**
  * @generated from service proto.users.v1.UserService
@@ -69,6 +112,14 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof LoginRequestSchema;
     output: typeof LoginResponseSchema;
+  },
+  /**
+   * @generated from rpc proto.users.v1.UserService.GetUser
+   */
+  getUser: {
+    methodKind: "unary";
+    input: typeof GetUserRequestSchema;
+    output: typeof GetUserResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_proto_users_v1_users, 0);

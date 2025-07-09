@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package proto.dailyRevenueTables.v1;
+
+option go_package = "backend/gen/proto/dailyRevenueTables/v1;dailyRevenuTablesv1";
+
+message Tax {
+  int32 id = 1;
+  string name = 2;
+  double amount = 3; // Rate as a percentage (e.g., 5.0 for 5%)
+  int32 daily_revenue_table_id = 4;
+}
+
+message DatasetEntry {
+  int32 id = 1;
+  string status = 2;
+  string date = 3;
+  int32 daily_revenue_table_id = 4;
+}
+
+message DailyRevenueTable {
+  int32 id = 1;
+  double daily_revenue = 2;
+  string currency = 3;
+  repeated Tax taxes = 4;
+  repeated DatasetEntry dataset = 5;
+  int32 user_id = 6;
+}
+
+message GetDailyRevenueTablesRequest {}
+
+message GetDailyRevenueTablesResponse {
+  repeated DailyRevenueTable daily_revenue_tables = 1;
+}
+
+message IDParam { int32 id = 1; }
+
+service DailyRevenueTablesService {
+  // get all tables
+  rpc GetDailyRevenueTables(GetDailyRevenueTablesRequest) returns (GetDailyRevenueTablesResponse) {}
+  // get single table
+  rpc GetDailyRevenueTable(IDParam) returns (DailyRevenueTable) {}
+  // create, update, delete single
+  rpc CreateDailyRevenueTable(DailyRevenueTable) returns (DailyRevenueTable) {}
+  rpc UpdateDailyRevenueTable(DailyRevenueTable) returns (DailyRevenueTable) {}
+  rpc DeleteDailyRevenueTable(IDParam) returns (DailyRevenueTable) {}
+
+  rpc AddTax(Tax) returns (Tax) {}
+  rpc UpdateTax(Tax) returns (Tax) {}
+  rpc DeleteTax(IDParam) returns (Tax) {}
+
+  rpc AddDatasetEntry(DatasetEntry) returns (DatasetEntry) {}
+  rpc UpdateDatasetEntry(DatasetEntry) returns (DatasetEntry) {}
+  rpc DeleteDatasetEntry(IDParam) returns (DatasetEntry) {}
+}

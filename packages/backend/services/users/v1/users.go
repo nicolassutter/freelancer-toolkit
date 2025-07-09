@@ -5,7 +5,6 @@ import (
 	"backend/gen/proto/users/v1/usersv1connect"
 
 	"context"
-	"fmt"
 
 	"connectrpc.com/connect"
 	"github.com/gofiber/fiber/v2"
@@ -46,11 +45,15 @@ func (s *UsersServer) Login(
 	ctx context.Context,
 	req *connect.Request[usersv1.LoginRequest],
 ) (*connect.Response[usersv1.LoginResponse], error) {
-	response := connect.NewResponse(&usersv1.LoginResponse{
-		Email: fmt.Sprintf("Hello, %s!", req.Msg.Email),
-		Name:  "User name",
-	})
+	response := connect.NewResponse(&usersv1.LoginResponse{})
+	return response, nil
+}
 
+func (s *UsersServer) GetUser(
+	ctx context.Context,
+	req *connect.Request[usersv1.GetUserRequest],
+) (*connect.Response[usersv1.GetUserResponse], error) {
+	response := connect.NewResponse(&usersv1.GetUserResponse{})
 	return response, nil
 }
 
